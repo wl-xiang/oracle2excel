@@ -1,0 +1,9 @@
+{
+    "user": "your_user",
+    "password": "your_password",
+    "host": "192.168.1.100",
+    "port": 1521,
+    "service_name": "orcl",
+    "sql": "SELECT * FROM your_table WHERE ROWNUM <= 100000",
+    "output": "/app/output/data.xlsx"
+}
