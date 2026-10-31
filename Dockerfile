@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1
-# 基于 python:3.11-slim (Debian 12 bookworm, 该版本库中存在 libaio1 包)
-FROM python:3.11-slim
+# 显式固定到 Debian 12 bookworm: libaio1 仅存在于 bookworm,
+# 默认的 python:3.11-slim 已切到 trixie, 其中该包已更名为 libaio1t64, 安装会报 exit 100
+FROM python:3.11-slim-bookworm
 
 ENV PYTHONUNBUFFERED=1 \
     LANG=C.UTF-8

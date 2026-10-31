@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+
+# 运行/构建产物
+output/
+dist/
