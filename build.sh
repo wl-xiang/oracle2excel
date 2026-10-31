@@ -7,10 +7,11 @@ IMAGE="oracle2excel:1.0"
 VERSION="1.0"
 DIST_DIR="./dist"
 
-# 目标平台: 默认 linux/amd64 (绝大多数 x86_64 服务器); arm64 服务器执行: ./build.sh linux/arm64
-# 在 Apple Silicon 等 arm 开发机上给 x86 服务器构建时, 必须显式指定, 否则会构建出 arm 镜像导致
-# 运行时 DPI-1047 (libclntsh.so 架构不匹配)
-PLATFORM="${1:-linux/amd64}"
+# 目标平台: 本工程构建机与部署机均为 arm64, 默认 linux/arm64
+# 如需给 x86_64 服务器构建, 执行: ./build.sh linux/amd64
+# 若不指定 --platform, arm 机器上会构建出 arm 镜像; 而错误架构的 Instant Client 会导致
+# 运行时 DPI-1047 (libclntsh.so 架构不匹配, 报 No such file or directory)
+PLATFORM="${1:-linux/arm64}"
 
 mkdir -p "$DIST_DIR"
 
