@@ -54,9 +54,8 @@ def load_config(path):
 def init_thick_mode():
     """启用 Thick 模式 (Oracle 11g 必需), 依赖镜像内的 Instant Client 19。"""
     lib_dir = os.environ.get("ORACLE_HOME") or None
+    # init_oracle_client 仅在 Thick 模式初始化成功时返回, 失败会直接抛异常
     oracledb.init_oracle_client(lib_dir=lib_dir)
-    if oracledb.is_thin():
-        raise RuntimeError("Thick 模式初始化失败, 当前仍为 Thin 模式, 无法连接 Oracle 11g")
     log("Thick 模式初始化成功 (Instant Client: %s)" % (lib_dir or "默认路径"))
 
 
